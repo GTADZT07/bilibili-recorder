@@ -1,7 +1,11 @@
 Python 3.8+
+
 Streamlink
+
 FFmpeg
+
 pip 包：`requests`、`websocket-client`、`brotli`
+
 包含 SESSDATA 的 Cookie 文件
   准备 Cookie 文件：
       
