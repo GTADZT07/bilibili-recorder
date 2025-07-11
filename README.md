@@ -7,4 +7,4 @@ pip 包：`requests`、`websocket-client`、`brotli`
 把py里面的用户配置改成你自己的就好 tg的token可以不填
 
 windows：
-    pip install requests websocket-client brotli streamlink
+<pre markdown> ```bash pip install requests websocket-client brotli streamlink ``` </pre>
