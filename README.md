@@ -26,6 +26,12 @@ pip 包：`requests`、`websocket-client`、`brotli`
 windows：
   <pre markdown> bash pip install requests websocket-client brotli streamlink  </pre>
   ffmpeg：<pre markdown> https://ffmpeg.org/download.html  </pre>
+  新建bat文件：
+    <pre markdown>@echo off
+    python "%~dp0recorder_id.py"
+    pause
+    </pre>
+
 
 
   
