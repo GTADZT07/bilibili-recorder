@@ -301,9 +301,14 @@ def record_stream(real_rid: str):
     
     # 如果 WebSocket 可用且已获取 host/token，可再单独监听 PREPARING 触发下播
     # 这里略，可自行扩展 on_message 逻辑。
-    title = get_live_title(real_rid)
-    # 如果没取到，就退回原来 prefix（去掉尾部下划线）
-    session_prefix = f"【{title or prefix.strip('_')}】_"
+    raw_title = get_live_title(real_rid)
+    if not raw_title:
+        # 去掉尾部下划线和方括号
+        raw_title = prefix.rstrip("_").strip("【】")
+    # —— 3. 再拼上几月几号 —— #
+    date_str = datetime.now().strftime("%m月%d号")
+    # —— 4. 最终前缀：prefix+标题+日期+下划线 —— #
+    session_prefix = f"{prefix}{raw_title}_{date_str}_"
     # 读取 cookie
     sess = get_sessdata_from_cookie()
     cookie_args = ["--http-cookie",f"SESSDATA={sess}"] if sess else []
