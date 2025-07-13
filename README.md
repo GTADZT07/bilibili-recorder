@@ -33,7 +33,7 @@
 
       
       
-# 安装依赖
+## 安装依赖
 windows：
   <pre markdown> bash pip install requests websocket-client brotli streamlink  </pre>
  
@@ -41,10 +41,10 @@ windows：
 Linux/macOS:
       <pre markdown>pip3 install requests websocket-client brotli streamlink</pre>  
      
-# 安装FFmpeg
+## 安装FFmpeg
  <pre markdown>https://ffmpeg.org/download.html</pre>  
 
-# 启动脚本
+## 启动脚本
 新建bat文件（win）：
       <pre markdown>@echo off
       python "%~dp0recorder_id.py"
@@ -53,4 +53,4 @@ Linux/macOS:
 
 新建.sh文件（macos/linux）：
         <pre markdown>python3 recorder_id.py</pre>
-        执行一下权限命令并启动：<pre markdown>chmod +x start.sh<br/>./start.sh```</pre>
+        执行一下权限命令并启动（macos/linux）：<pre markdown>chmod +x start.sh<br/>./start.sh```</pre>
