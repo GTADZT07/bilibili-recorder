@@ -228,6 +228,7 @@ def parse_ws_slices(blob: bytes):
 
 def danmu_listener(real_rid: str, danmaku_file: Path, start_time: datetime):
     """专门负责长连接拿弹幕，遇断自动重连"""
+    print("🔔 danmu_listener 启动，开始订阅弹幕")
         # ASS 文件头，只写一次
     if not danmaku_file.exists():
         danmaku_file.write_text(
@@ -274,6 +275,7 @@ def danmu_listener(real_rid: str, danmaku_file: Path, start_time: datetime):
                 # 假设 msg 已经是 bytes，需要解包并解析
                 for sub in parse_ws_slices(msg):
                     if sub.get("cmd") == "DANMU_MSG":
+                        print("📨 收到弹幕包：", sub) 
                         text = sub["info"][1][1]
                         # 计算相对时间
                         delta = datetime.now() - start_time
@@ -316,6 +318,15 @@ def record_stream(real_rid: str):
     # 组目录、文件名
     ts_dir = Path(save_dir) / now_str()
     ts_dir.mkdir(parents=True, exist_ok=True)
+    from datetime import datetime
+    danmaku_file = ts_dir / "danmaku.ass"
+    start_time = datetime.now()
+    threading.Thread(
+        target=danmu_listener,
+        args=(real_rid, danmaku_file, start_time),
+        daemon=True
+    ).start()
+    print(f"🟢 已启动弹幕监听线程，输出文件：{danmaku_file}")
     parts=[]
     last_data = time.time()
 
