@@ -318,7 +318,6 @@ def record_stream(real_rid: str):
     # 组目录、文件名
     ts_dir = Path(save_dir) / now_str()
     ts_dir.mkdir(parents=True, exist_ok=True)
-    from datetime import datetime
     danmaku_file = ts_dir / "danmaku.ass"
     start_time = datetime.now()
     threading.Thread(
